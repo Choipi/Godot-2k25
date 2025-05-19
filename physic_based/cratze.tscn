@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmi2i4u0lh1pj"]
+
+[ext_resource type="Texture2D" uid="uid://ik10oedwugpb" path="res://Physics Project/Crate.png" id="1_hf7mo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yhui4"]
+
+[node name="Cratze" type="RigidBody2D"]
+mass = 5.98
+gravity_scale = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_hf7mo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.920338, 0.920338)
+shape = SubResource("RectangleShape2D_yhui4")

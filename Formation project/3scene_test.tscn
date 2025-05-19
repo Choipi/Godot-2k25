@@ -1,0 +1,249 @@
+[gd_scene load_steps=14 format=3 uid="uid://cqppmg5osnelo"]
+
+[ext_resource type="Material" uid="uid://dxagso4o4vp0m" path="res://materials/TestMaterial.tres" id="1_fnfpf"]
+[ext_resource type="PackedScene" uid="uid://5l6ylqav44q5" path="res://Coin_Scene.tscn" id="2_v5ykn"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4qwet"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_ryq52"]
+sky_material = SubResource("ProceduralSkyMaterial_4qwet")
+
+[sub_resource type="Environment" id="Environment_aiv4b"]
+background_mode = 2
+sky = SubResource("Sky_ryq52")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="GDScript" id="GDScript_pbrjw"]
+script/source = "extends CharacterBody3D
+
+var speed = 0
+var coin = 1
+const JUMP_VELOCITY = 15.5
+@onready var camera = $Camera3D
+
+# Get the gravity from the project settings to be synced with RigidBody nodes.
+var gravity = ProjectSettings.get_setting(\"physics/3d/default_gravity\")*4
+
+func _ready():
+	global_position = Vector3(0,0,0)
+	
+
+func _physics_process(delta):
+	# Add the gravity.
+	if not is_on_floor():
+		velocity.y -= gravity * delta
+	
+	# Handle Jump.
+	if Input.is_action_just_pressed(\"ui_accept\") and is_on_floor():
+		velocity.y = JUMP_VELOCITY + coin
+	
+	speed = 0
+	if Input.is_key_pressed(KEY_LEFT):
+		rotate_y(0.1)
+	
+	if Input.is_key_pressed(KEY_RIGHT):
+		rotate_y(-0.1)
+		
+	if Input.is_key_pressed(KEY_UP):
+		speed = 500
+		
+	if Input.is_key_pressed(KEY_DOWN):
+		speed = -500
+	
+	# Get the input direction and handle the movement/deceleration.
+	var direction = global_transform.basis.z.normalized()
+	if direction:
+		velocity.x = direction.x * speed * delta * coin
+		velocity.z = direction.z * speed * delta * coin
+	else:
+		velocity.x = move_toward(velocity.x, 0, speed * delta)
+		velocity.z = move_toward(velocity.z, 0, speed * delta)
+	move_and_slide()
+
+
+func _on_coin_body_entered(body):
+	body.coin += 1
+	camera.fov += 10
+
+
+"
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_fjx60"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pcrqd"]
+radius = 0.556898
+height = 2.08085
+
+[sub_resource type="GDScript" id="GDScript_xb1vx"]
+script/source = "extends Area3D
+
+
+
+func _on_body_entered(body):
+	body.velocity = Vector3(0,25,0)
+	queue_free()
+"
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_dn1by"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_6ob7l"]
+data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
+backface_collision = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_1eolo"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_0cgr8"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+backface_collision = true
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_aiv4b")
+
+[node name="player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.703855, 0.708421)
+script = SubResource("GDScript_pbrjw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="player"]
+transform = Transform3D(1.00295, 0, 0, 0, 1.00295, 0, 0, 0, 1.00295, -0.146904, 1.01633, 0)
+material_override = ExtResource("1_fnfpf")
+mesh = SubResource("CapsuleMesh_fjx60")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="player"]
+transform = Transform3D(1.00631, 0, 0, 0, 1.00631, 0, 0, 0, 1.00631, -0.157862, 1.04965, -0.0166569)
+shape = SubResource("CapsuleShape3D_pcrqd")
+
+[node name="Camera3D" type="Camera3D" parent="player"]
+transform = Transform3D(-0.985452, -0.0304238, 0.167208, 0.0417357, 0.910399, 0.411621, -0.164749, 0.412612, -0.895885, 0, 5.27976, -5.86647)
+current = true
+fov = 94.1
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 1, 3.12691, 7)
+visible = false
+shadow_enabled = true
+
+[node name="Coin" parent="." instance=ExtResource("2_v5ykn")]
+transform = Transform3D(2.61754, 0, 0, 0, 2.61754, 0, 0, 0, 2.61754, 1.59683, 5.69183, 10.2585)
+script = SubResource("GDScript_xb1vx")
+
+[node name="Coin2" parent="." instance=ExtResource("2_v5ykn")]
+transform = Transform3D(2.61754, 0, 0, 0, 2.61754, 0, 0, 0, 2.61754, -0.609245, 14.5551, 5.26506)
+script = SubResource("GDScript_xb1vx")
+
+[node name="Coin3" parent="." instance=ExtResource("2_v5ykn")]
+transform = Transform3D(2.61754, 0, 0, 0, 2.61754, 0, 0, 0, 2.61754, 4.48481, 14.6369, 4.09082)
+script = SubResource("GDScript_xb1vx")
+
+[node name="Coin4" parent="." instance=ExtResource("2_v5ykn")]
+transform = Transform3D(2.61754, 0, 0, 0, 2.61754, 0, 0, 0, 2.61754, 0.356564, 1.93206, -6.47339)
+script = SubResource("GDScript_xb1vx")
+
+[node name="Coin9" parent="." instance=ExtResource("2_v5ykn")]
+transform = Transform3D(2.61754, 0, 0, 0, 2.61754, 0, 0, 0, 2.61754, 2.80508, 1.93206, 2.14621)
+script = SubResource("GDScript_xb1vx")
+
+[node name="Coin5" parent="." instance=ExtResource("2_v5ykn")]
+transform = Transform3D(2.61754, 0, 0, 0, 2.61754, 0, 0, 0, 2.61754, 3.16383, 14.6618, 0.0999346)
+script = SubResource("GDScript_xb1vx")
+
+[node name="Coin6" parent="." instance=ExtResource("2_v5ykn")]
+transform = Transform3D(2.61754, 0, 0, 0, 2.61754, 0, 0, 0, 2.61754, 3.16383, 12.6607, 34.4082)
+script = SubResource("GDScript_xb1vx")
+
+[node name="Coin7" parent="." instance=ExtResource("2_v5ykn")]
+transform = Transform3D(2.61754, 0, 0, 0, 2.61754, 0, 0, 0, 2.61754, -11.6388, 20.5581, 24.1535)
+script = SubResource("GDScript_xb1vx")
+
+[node name="Coin8" parent="." instance=ExtResource("2_v5ykn")]
+transform = Transform3D(2.61754, 0, 0, 0, 2.61754, 0, 0, 0, 2.61754, 11.4987, 9.64269, 17.8735)
+script = SubResource("GDScript_xb1vx")
+
+[node name="Level" type="Node" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level"]
+transform = Transform3D(-35.7786, 0, 0, 0, 1, 0, 0, 0, -33.415, 0, 0, 0)
+mesh = SubResource("PlaneMesh_dn1by")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_6ob7l")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Level"]
+transform = Transform3D(4.92664, 0, 0, 0, -3.63579, 0, 0, 0, 4.20572, 1.36544, 2.22539, 10.3027)
+mesh = SubResource("BoxMesh_1eolo")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/MeshInstance3D2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_0cgr8")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Level"]
+transform = Transform3D(8.3688, 0, 0, 0, -1.48801, 0, 0, 0, 8.18897, 10.0763, 8.15457, 17.9158)
+mesh = SubResource("BoxMesh_1eolo")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/MeshInstance3D3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/MeshInstance3D3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_0cgr8")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Level"]
+transform = Transform3D(12.753, 0, 0, 0, -0.81873, 0, 0, 0, 10.9353, 1.36544, 13.3072, 3.58835)
+mesh = SubResource("BoxMesh_1eolo")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/MeshInstance3D4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/MeshInstance3D4/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_0cgr8")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Level"]
+transform = Transform3D(16.4097, 0, 0, 0, -2.07204, 0, 0, 0, 12.117, 1.36544, 9.94204, 33.3706)
+mesh = SubResource("BoxMesh_1eolo")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/MeshInstance3D5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/MeshInstance3D5/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_0cgr8")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Level"]
+transform = Transform3D(8.40407, 0, 0, 0, -0.847407, 0, 0, 0, 13.6013, -11.6035, 19.5264, 25.0455)
+mesh = SubResource("BoxMesh_1eolo")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/MeshInstance3D6"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/MeshInstance3D6/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_0cgr8")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Level"]
+transform = Transform3D(4.91402, 0, 0, 0, -25.972, 0, 0, 0, 4.19494, -6.86262, 12.9746, 12.7366)
+mesh = SubResource("BoxMesh_1eolo")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/MeshInstance3D7"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/MeshInstance3D7/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_0cgr8")
+
+[connection signal="body_entered" from="Coin" to="player" method="_on_coin_body_entered"]
+[connection signal="body_entered" from="Coin" to="Coin" method="_on_body_entered"]
+[connection signal="body_entered" from="Coin2" to="player" method="_on_coin_body_entered"]
+[connection signal="body_entered" from="Coin2" to="Coin2" method="_on_body_entered"]
+[connection signal="body_entered" from="Coin3" to="player" method="_on_coin_body_entered"]
+[connection signal="body_entered" from="Coin3" to="Coin3" method="_on_body_entered"]
+[connection signal="body_entered" from="Coin4" to="player" method="_on_coin_body_entered"]
+[connection signal="body_entered" from="Coin4" to="Coin4" method="_on_body_entered"]
+[connection signal="body_entered" from="Coin9" to="player" method="_on_coin_body_entered"]
+[connection signal="body_entered" from="Coin9" to="Coin9" method="_on_body_entered"]
+[connection signal="body_entered" from="Coin5" to="player" method="_on_coin_body_entered"]
+[connection signal="body_entered" from="Coin5" to="Coin5" method="_on_body_entered"]
+[connection signal="body_entered" from="Coin6" to="player" method="_on_coin_body_entered"]
+[connection signal="body_entered" from="Coin6" to="Coin6" method="_on_body_entered"]
+[connection signal="body_entered" from="Coin7" to="player" method="_on_coin_body_entered"]
+[connection signal="body_entered" from="Coin7" to="Coin7" method="_on_body_entered"]
+[connection signal="body_entered" from="Coin8" to="player" method="_on_coin_body_entered"]
+[connection signal="body_entered" from="Coin8" to="Coin8" method="_on_body_entered"]

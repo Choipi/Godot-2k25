@@ -1,0 +1,81 @@
+[gd_scene load_steps=10 format=3 uid="uid://crfwx82jua7a8"]
+
+[ext_resource type="FontFile" uid="uid://cjf7i0tj0q4gs" path="res://ressources/Font/Kenney Future Narrow.ttf" id="1_lgtq0"]
+[ext_resource type="Script" path="res://menu.gd" id="1_sy604"]
+[ext_resource type="Texture2D" uid="uid://c2ckrql7l0yor" path="res://ressources/PNG/Green/Double/button_rectangle_depth_gloss.png" id="2_vsa1n"]
+[ext_resource type="Texture2D" uid="uid://cjl16bjvakra7" path="res://ressources/PNG/Green/Default/button_rectangle_depth_gloss.png" id="3_53ng2"]
+[ext_resource type="Texture2D" uid="uid://dm6krl4avp6si" path="res://ressources/PNG/Green/Default/button_rectangle_depth_border.png" id="4_lp08m"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q5e83"]
+texture = ExtResource("2_vsa1n")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_quda4"]
+texture = ExtResource("3_53ng2")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cl5l3"]
+texture = ExtResource("4_lp08m")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qw8g8"]
+
+[node name="Menu" type="Control" node_paths=PackedStringArray("best_score_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sy604")
+best_score_label = NodePath("bestScoreLabel")
+
+[node name="Startbutton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -144.0
+offset_top = 116.12
+offset_right = 144.0
+offset_bottom = 217.12
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_lgtq0")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_q5e83")
+theme_override_styles/hover = SubResource("StyleBoxTexture_quda4")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_cl5l3")
+theme_override_styles/focus = SubResource("StyleBoxTexture_qw8g8")
+text = "Play"
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -85.5
+offset_right = 85.5
+offset_bottom = 35.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_lgtq0")
+theme_override_font_sizes/font_size = 71
+text = "Clicker Game
+"
+
+[node name="bestScoreLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128.0
+offset_top = 132.0
+offset_right = 151.0
+offset_bottom = 167.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_lgtq0")
+theme_override_font_sizes/font_size = 20
+text = "Best score: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Startbutton" to="." method="_on_startbutton_pressed"]

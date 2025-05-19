@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://5l6ylqav44q5"]
+
+[ext_resource type="Material" uid="uid://bbnqlwat5rd4l" path="res://materials/coin.tres" id="1_v1nyg"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_5w8i0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_07j77"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_0x7pf"]
+radius = 0.157198
+
+[node name="Area3D" type="Area3D"]
+transform = Transform3D(2.61754, 0, 0, 0, 2.61754, 0, 0, 0, 2.61754, -0.609245, 2.93206, -13.3105)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.00675724, -0.0435015, 0, 0.260131, -0.00113001, 0, 0, 0, 0.207427, 0, 0, 0)
+material_override = ExtResource("1_v1nyg")
+mesh = SubResource("CylinderMesh_5w8i0")
+surface_material_override/0 = SubResource("StandardMaterial3D_07j77")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0168457)
+shape = SubResource("SphereShape3D_0x7pf")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.276034, -0.0168452)
+light_color = Color(0.1911, 0.63, 0.0315, 1)
+light_energy = 10.667
+spot_range = 7.0
+spot_angle = 36.5625

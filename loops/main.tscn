@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8ntb7p3iccp8"]
+
+[ext_resource type="Script" path="res://loops.gd" id="1_pxu6i"]
+[ext_resource type="PackedScene" uid="uid://dfr1n4mrkujqu" path="res://star.tscn" id="2_uav11"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_pxu6i")
+
+[node name="Star" parent="." instance=ExtResource("2_uav11")]
+
+[node name="Camera2D" type="Camera2D" parent="."]

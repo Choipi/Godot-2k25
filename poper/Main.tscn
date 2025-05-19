@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://030wc3rjbbh5"]
+
+[ext_resource type="Script" path="res://baloon_script/Balooon_Manager.gd" id="1_cur76"]
+[ext_resource type="PackedScene" uid="uid://bg28yd6gsofjh" path="res://baloon.tscn" id="2_o71ce"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_s543r"]
+font_size = 63
+
+[node name="Main" type="Node3D" node_paths=PackedStringArray("score_text")]
+script = ExtResource("1_cur76")
+score_text = NodePath("Label")
+
+[node name="Baloon" parent="." instance=ExtResource("2_o71ce")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="Baloon2" parent="." instance=ExtResource("2_o71ce")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.96673, -1.80518, 0)
+
+[node name="Baloon3" parent="." instance=ExtResource("2_o71ce")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.21157, 0.953827, 0)
+
+[node name="Baloon4" parent="." instance=ExtResource("2_o71ce")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52977, 0.854736, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -5)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 4.95618, 0)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 28.0
+offset_top = 30.0
+offset_right = 263.0
+offset_bottom = 110.0
+text = "Score: "
+label_settings = SubResource("LabelSettings_s543r")

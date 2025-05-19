@@ -1,0 +1,96 @@
+[gd_scene load_steps=10 format=3 uid="uid://s0gefwqa4avs"]
+
+[ext_resource type="Script" path="res://PLayer.gd" id="1_kwo68"]
+[ext_resource type="PackedScene" uid="uid://0wjx8g4d0kpy" path="res://tree.tscn" id="2_joow6"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_f6wca"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oter3"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nb8dg"]
+friction = 0.0
+rough = true
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1q45w"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wb7rf"]
+albedo_color = Color(1, 0, 0.74902, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_k17bl"]
+
+[sub_resource type="Environment" id="Environment_t1udd"]
+background_mode = 1
+background_color = Color(0.458824, 0.658824, 1, 1)
+
+[node name="Main" type="Node3D"]
+
+[node name="Ground" type="StaticBody3D" parent="."]
+transform = Transform3D(115.332, 1.40219, 0, -58.625, 2.75849, 0, 0, 0, 16.5864, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 1.90735e-06, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_f6wca")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_oter3")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.2176, 22.6967, 0)
+physics_material_override = SubResource("PhysicsMaterial_nb8dg")
+lock_rotation = true
+max_contacts_reported = 5
+contact_monitor = true
+script = ExtResource("1_kwo68")
+
+[node name="Camera3D" type="Camera3D" parent="RigidBody3D"]
+transform = Transform3D(1.19249e-08, 0.452435, -0.891798, 0, 0.891798, 0.452435, 1, -5.39523e-09, 1.06346e-08, -23.5951, 3.18732, -0.0749121)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.2051, -0.456832, 0)
+mesh = SubResource("CapsuleMesh_1q45w")
+surface_material_override/0 = SubResource("StandardMaterial3D_wb7rf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.1866, -0.36885, 0.0304897)
+shape = SubResource("CapsuleShape3D_k17bl")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.796825, 0.0231838, -0.603765, 0.60421, -0.0305745, 0.796239, 0, -0.999264, -0.0383704, -14.5603, 28.4344, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_t1udd")
+
+[node name="Tree" parent="." groups=["Tree"] instance=ExtResource("2_joow6")]
+transform = Transform3D(1.94673, 1.84801, 0, -0.987634, 3.64262, 0, 0, 0, 2.35247, -23.5793, 17.806, -1.14809)
+
+[node name="Tree2" parent="." groups=["Tree"] instance=ExtResource("2_joow6")]
+transform = Transform3D(1.94673, 1.84801, 0, -0.987634, 3.64262, 0, 0, 0, 2.35247, -23.5793, 17.806, 2.81981)
+
+[node name="Tree3" parent="." groups=["Tree"] instance=ExtResource("2_joow6")]
+transform = Transform3D(1.94673, 1.84801, 0, -0.987634, 3.64262, 0, 0, 0, 2.35247, -5.78377, 9.13696, 2.81981)
+
+[node name="Tree4" parent="." groups=["Tree"] instance=ExtResource("2_joow6")]
+transform = Transform3D(1.94673, 1.84801, 0, -0.987634, 3.64262, 0, 0, 0, 2.35247, -5.78377, 9.13696, -2.18391)
+
+[node name="Tree5" parent="." groups=["Tree"] instance=ExtResource("2_joow6")]
+transform = Transform3D(1.94673, 1.84801, 0, -0.987634, 3.64262, 0, 0, 0, 2.35247, -17.1434, 14.9112, 0.860404)
+
+[node name="Tree7" parent="." groups=["Tree"] instance=ExtResource("2_joow6")]
+transform = Transform3D(1.94673, 1.84801, 0, -0.987634, 3.64262, 0, 0, 0, 2.35247, 8.04115, 2.10953, -1.14809)
+
+[node name="Tree8" parent="." groups=["Tree"] instance=ExtResource("2_joow6")]
+transform = Transform3D(1.94673, 1.84801, 0, -0.987634, 3.64262, 0, 0, 0, 2.35247, 8.04115, 2.10953, 2.81981)
+
+[node name="Tree9" parent="." groups=["Tree"] instance=ExtResource("2_joow6")]
+transform = Transform3D(1.94673, 1.84801, 0, -0.987634, 3.64262, 0, 0, 0, 2.35247, 25.8367, -6.93621, 2.81981)
+
+[node name="Tree10" parent="." groups=["Tree"] instance=ExtResource("2_joow6")]
+transform = Transform3D(1.94673, 1.84801, 0, -0.987634, 3.64262, 0, 0, 0, 2.35247, 25.8367, -6.93621, -2.18391)
+
+[node name="Tree11" parent="." groups=["Tree"] instance=ExtResource("2_joow6")]
+transform = Transform3D(1.94673, 1.84801, 0, -0.987634, 3.64262, 0, 0, 0, 2.35247, 14.4771, -1.16194, 0.860404)
+
+[node name="Tree6" parent="." groups=["Tree"] instance=ExtResource("2_joow6")]
+transform = Transform3D(0.714669, 0.550003, 0, -0.293939, 1.33725, 0, 0, 0, 3.65922, 27.9882, -8.0299, 0.860404)
+
+[connection signal="body_entered" from="RigidBody3D" to="RigidBody3D" method="_on_body_entered"]

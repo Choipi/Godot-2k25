@@ -1,0 +1,221 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwiaqrjgldikb"]
+
+[ext_resource type="Script" path="res://physics_player.gd" id="1_8g2n4"]
+[ext_resource type="Texture2D" uid="uid://c1bip3o0liibv" path="res://Physics Project/PhysicsCharacter.png" id="1_tmfpy"]
+[ext_resource type="PackedScene" uid="uid://cmi2i4u0lh1pj" path="res://cratze.tscn" id="3_vvr04"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dn0gu"]
+size = Vector2(18, 18)
+
+[node name="Main" type="Node2D"]
+
+[node name="Player" type="RigidBody2D" parent="."]
+position = Vector2(0, -127)
+gravity_scale = 0.0
+linear_damp = 7.769
+script = ExtResource("1_8g2n4")
+
+[node name="P_sprite" type="Sprite2D" parent="Player"]
+texture = ExtResource("1_tmfpy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_dn0gu")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(4.96, 1)
+zoom = Vector2(2.01, 2.01)
+
+[node name="Cratze" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(51, -127)
+
+[node name="Cratze2" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(130, -127)
+
+[node name="Cratze3" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(199, -103)
+
+[node name="Cratze4" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(199, -42)
+
+[node name="Cratze5" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(168, -73)
+
+[node name="Cratze6" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(177, -112)
+
+[node name="Cratze7" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(130, -82)
+
+[node name="Cratze8" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(139, -42)
+
+[node name="Cratze9" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(139, -42)
+
+[node name="Cratze10" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(-33, -108)
+
+[node name="Cratze11" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(36, -84)
+
+[node name="Cratze12" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(36, -23)
+
+[node name="Cratze13" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(5, -54)
+
+[node name="Cratze14" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(14, -93)
+
+[node name="Cratze15" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(-33, -63)
+
+[node name="Cratze16" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(-24, -23)
+
+[node name="Cratze17" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(-24, -23)
+
+[node name="Cratze18" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(-117, -116)
+
+[node name="Cratze19" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(-48, -92)
+
+[node name="Cratze20" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(-48, -31)
+
+[node name="Cratze21" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(-79, -62)
+
+[node name="Cratze22" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(-70, -101)
+
+[node name="Cratze23" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(-117, -71)
+
+[node name="Cratze24" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(-108, -31)
+
+[node name="Cratze25" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(-108, -31)
+
+[node name="Cratze26" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(-258, 38)
+
+[node name="Cratze27" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(-189, 62)
+
+[node name="Cratze28" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(-189, 123)
+
+[node name="Cratze29" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(-220, 92)
+
+[node name="Cratze30" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(-211, 53)
+
+[node name="Cratze31" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(-258, 83)
+
+[node name="Cratze32" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(-249, 123)
+
+[node name="Cratze33" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(-249, 123)
+
+[node name="Cratze34" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(-107, 40)
+
+[node name="Cratze35" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(-38, 64)
+
+[node name="Cratze36" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(-38, 125)
+
+[node name="Cratze37" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(-69, 94)
+
+[node name="Cratze38" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(-60, 55)
+
+[node name="Cratze39" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(-107, 85)
+
+[node name="Cratze40" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(-98, 125)
+
+[node name="Cratze41" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(-98, 125)
+
+[node name="Cratze42" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(36, 44)
+
+[node name="Cratze43" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(105, 68)
+
+[node name="Cratze44" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(105, 129)
+
+[node name="Cratze45" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(74, 98)
+
+[node name="Cratze46" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(83, 59)
+
+[node name="Cratze47" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(36, 89)
+
+[node name="Cratze48" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(45, 129)
+
+[node name="Cratze49" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(45, 129)
+
+[node name="Cratze50" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(130, 17)
+
+[node name="Cratze51" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(199, 41)
+
+[node name="Cratze52" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(199, 102)
+
+[node name="Cratze53" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(168, 71)
+
+[node name="Cratze54" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(177, 32)
+
+[node name="Cratze55" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(130, 62)
+
+[node name="Cratze56" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(139, 102)
+
+[node name="Cratze57" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(139, 102)
+
+[node name="Cratze58" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(-220, -110)
+
+[node name="Cratze59" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(-151, -86)
+
+[node name="Cratze60" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(-151, -25)
+
+[node name="Cratze61" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(-182, -56)
+
+[node name="Cratze62" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(-173, -95)
+
+[node name="Cratze63" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(-220, -65)
+
+[node name="Cratze64" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(-211, -25)
+
+[node name="Cratze65" parent="." instance=ExtResource("3_vvr04")]
+position = Vector2(-211, -25)
