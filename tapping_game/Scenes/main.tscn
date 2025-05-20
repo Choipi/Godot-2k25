@@ -1,0 +1,253 @@
+[gd_scene load_steps=23 format=3 uid="uid://bb0prm08yym57"]
+
+[ext_resource type="Script" path="res://Scenes/main.gd" id="1_7f8a4"]
+[ext_resource type="Script" path="res://Scenes/Background.gd" id="1_btjas"]
+[ext_resource type="PackedScene" uid="uid://bxpcsgh5roq0t" path="res://Scenes/obstacle.tscn" id="2_fppm6"]
+[ext_resource type="Texture2D" uid="uid://kp3uc1o8r337" path="res://Assets-TappyPlane/Background.png" id="2_iilit"]
+[ext_resource type="PackedScene" uid="uid://bvxtkmsl7on3f" path="res://Scenes/coin.tscn" id="3_hckou"]
+[ext_resource type="Script" path="res://Scenes/Player.gd" id="4_7nnos"]
+[ext_resource type="Texture2D" uid="uid://cq2mhvup72mpc" path="res://Assets-TappyPlane/Player.png" id="4_lqf0t"]
+[ext_resource type="FontFile" uid="uid://btu7wmhp3frtg" path="res://Assets-TappyPlane/kenvector_future.ttf" id="6_mh7rl"]
+[ext_resource type="Texture2D" uid="uid://cgpxejmbpdlk7" path="res://Assets-TappyPlane/Circle.png" id="8_a01ki"]
+[ext_resource type="AudioStream" uid="uid://rntode8l0fcs" path="res://Assets-TappyPlane/CoinCollected.ogg" id="9_oghg0"]
+[ext_resource type="AudioStream" uid="uid://fuvpre5j1kp3" path="res://Assets-TappyPlane/GameOver.ogg" id="10_heqeg"]
+[ext_resource type="AudioStream" uid="uid://jixt4dwcdmah" path="res://Assets-TappyPlane/Music.wav" id="12_qlsjh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x1uc8"]
+radius = 38.0526
+
+[sub_resource type="Curve" id="Curve_rvydp"]
+_data = [Vector2(0.104294, 0.428571), 0.0, 0.0, 0, 0, Vector2(0.797546, 0.351648), 0.0, 0.0, 0, 0, Vector2(1, 0.032967), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_76jww"]
+size = Vector2(1600, 20)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_64y3s"]
+bg_color = Color(0.164706, 0.164706, 0.164706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3g1ay"]
+bg_color = Color(0.133333, 0.654902, 0.517647, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vpc6e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_olnd8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rfdbw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_am0t2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_05p5g"]
+
+[node name="main" type="Node"]
+script = ExtResource("1_7f8a4")
+obstacle = ExtResource("2_fppm6")
+coin = ExtResource("3_hckou")
+
+[node name="Background" type="Node2D" parent="." groups=["background", "dynamicObjects"]]
+position = Vector2(0, 480)
+script = ExtResource("1_btjas")
+
+[node name="Background" type="Sprite2D" parent="Background"]
+position = Vector2(800, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("2_iilit")
+
+[node name="Background2" type="Sprite2D" parent="Background"]
+position = Vector2(2400, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("2_iilit")
+
+[node name="Player" type="RigidBody2D" parent="." groups=["Player"]]
+position = Vector2(150, 480)
+mass = 1.4
+gravity_scale = 2.1
+continuous_cd = 1
+max_contacts_reported = 5
+script = ExtResource("4_7nnos")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = ExtResource("4_lqf0t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(4, -2)
+shape = SubResource("CircleShape2D_x1uc8")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Player"]
+position = Vector2(-39, 11)
+amount = 23
+lifetime = 0.4
+explosiveness = 0.15
+randomness = 0.14
+texture = ExtResource("8_a01ki")
+spread = 180.0
+gravity = Vector2(-2500.53, 0)
+initial_velocity_min = 186.81
+initial_velocity_max = 208.79
+scale_amount_curve = SubResource("Curve_rvydp")
+color = Color(0.662745, 0.235294, 0.235294, 1)
+
+[node name="coin collected" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("9_oghg0")
+
+[node name="game over" type="AudioStreamPlayer" parent="Player"]
+process_mode = 3
+stream = ExtResource("10_heqeg")
+
+[node name="walls" type="Node" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="walls"]
+position = Vector2(0, 19)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/StaticBody2D"]
+position = Vector2(800, 0)
+shape = SubResource("RectangleShape2D_76jww")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="walls"]
+position = Vector2(0, 960)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/StaticBody2D2"]
+position = Vector2(800, 0)
+shape = SubResource("RectangleShape2D_76jww")
+
+[node name="UI" type="Control" parent="."]
+z_index = 5
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1600.0
+offset_bottom = 960.0
+
+[node name="Health" type="ProgressBar" parent="UI"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 27.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_64y3s")
+theme_override_styles/fill = SubResource("StyleBoxFlat_3g1ay")
+value = 100.0
+show_percentage = false
+
+[node name="scorelabel" type="Label" parent="UI/Health"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -32.5
+offset_right = 25.0
+offset_bottom = 35.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_mh7rl")
+theme_override_font_sizes/font_size = 30
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpawnerTImerWall" type="Timer" parent="."]
+wait_time = 0.744
+autostart = true
+
+[node name="SpawnCoinTImer" type="Timer" parent="."]
+wait_time = 0.875
+autostart = true
+
+[node name="Game_Over" type="Control" parent="."]
+visible = false
+z_index = 6
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="Game_Over"]
+layout_mode = 0
+offset_right = 1600.0
+offset_bottom = 960.0
+color = Color(0, 0, 0, 0.368627)
+
+[node name="gameover label" type="Label" parent="Game_Over"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.5
+offset_top = -118.33
+offset_right = 43.5
+offset_bottom = -95.33
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_mh7rl")
+theme_override_font_sizes/font_size = 91
+text = "Game Over
+"
+
+[node name="score" type="Label" parent="Game_Over"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = 164.0
+offset_right = 836.0
+offset_bottom = 267.0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_mh7rl")
+theme_override_font_sizes/font_size = 91
+text = "your score: 0"
+
+[node name="best_score" type="Label" parent="Game_Over"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -757.0
+offset_top = 277.0
+offset_right = 79.0
+offset_bottom = 380.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.596251, 0.596251)
+theme_override_fonts/font = ExtResource("6_mh7rl")
+theme_override_font_sizes/font_size = 91
+text = "Best score: 0
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="Try again" type="Button" parent="Game_Over"]
+process_mode = 3
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.1275
+anchor_top = 0.811458
+anchor_right = 0.445625
+anchor_bottom = 0.996875
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 0.2, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 0.470588, 1)
+theme_override_fonts/font = ExtResource("6_mh7rl")
+theme_override_font_sizes/font_size = 87
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vpc6e")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_olnd8")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_rfdbw")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_am0t2")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_05p5g")
+text = "Restart"
+metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_qlsjh")
+autoplay = true
+
+[connection signal="timeout" from="SpawnerTImerWall" to="." method="_on_spawner_t_imer_timeout"]
+[connection signal="timeout" from="SpawnCoinTImer" to="." method="_on_spawn_coin_t_imer_timeout"]
+[connection signal="pressed" from="Game_Over/Try again" to="." method="_on_try_again_pressed"]
