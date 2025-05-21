@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7tpfr1hlsmpa"]
+
+[ext_resource type="Script" path="res://Scripts/Menu.gd" id="1_ugga4"]
+[ext_resource type="FontFile" uid="uid://2j5so3ptdpc1" path="res://Assets/FredokaOne-Regular.ttf" id="2_pcoe3"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ugga4")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -174.5
+offset_right = 174.5
+offset_bottom = 165.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_pcoe3")
+theme_override_font_sizes/font_size = 66
+text = "PEW PEW
+THE GAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.5
+offset_top = -15.5
+offset_right = 20.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_pcoe3")
+theme_override_font_sizes/font_size = 151
+text = "PLAY"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
