@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://ddjwgvae8idd"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_eaku3"]
+[ext_resource type="Texture2D" uid="uid://bjdpa1042h6q1" path="res://Assets Godot In-Game Shop/Players/Violet.png" id="1_x7n6o"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="3_0l324"]
+[ext_resource type="FontFile" uid="uid://txdjn0ac2wt2" path="res://Assets Godot In-Game Shop/FredokaOne-Regular.ttf" id="4_ce5f8"]
+[ext_resource type="Script" path="res://scene/UI.gd" id="4_hrpu8"]
+
+[node name="main" type="Node"]
+script = ExtResource("1_eaku3")
+
+[node name="player" type="Sprite2D" parent="."]
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("1_x7n6o")
+script = ExtResource("3_0l324")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_hrpu8")
+
+[node name="Button" type="Button" parent="UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -83.0
+offset_right = 173.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("4_ce5f8")
+theme_override_font_sizes/font_size = 61
+text = "SHOP
+"
+
+[node name="Shop_window" type="Window" parent="."]
+initial_position = 1
+size = Vector2i(500, 500)
+visible = false
+
+[connection signal="pressed" from="UI/Button" to="UI" method="_on_button_pressed"]

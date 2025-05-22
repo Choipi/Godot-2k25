@@ -1,0 +1,150 @@
+[gd_scene load_steps=8 format=3 uid="uid://ddjwgvae8idd"]
+
+[ext_resource type="Texture2D" uid="uid://bjdpa1042h6q1" path="res://Assets Godot In-Game Shop/Players/Violet.png" id="1_x7n6o"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="3_0l324"]
+[ext_resource type="FontFile" uid="uid://txdjn0ac2wt2" path="res://Assets Godot In-Game Shop/FredokaOne-Regular.ttf" id="4_ce5f8"]
+[ext_resource type="Script" path="res://scripts/UI.gd" id="4_hrpu8"]
+[ext_resource type="Texture2D" uid="uid://1drmt6dflofq" path="res://Assets Godot In-Game Shop/Players/Red.png" id="6_du2y2"]
+[ext_resource type="Texture2D" uid="uid://22d3oueh2usg" path="res://Assets Godot In-Game Shop/Players/Pink.png" id="6_dwg8r"]
+[ext_resource type="Texture2D" uid="uid://bu334hc06lyp8" path="res://Assets Godot In-Game Shop/Players/Yellow.png" id="8_bnwl4"]
+
+[node name="main" type="Node"]
+
+[node name="player" type="Sprite2D" parent="."]
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("1_x7n6o")
+script = ExtResource("3_0l324")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_hrpu8")
+
+[node name="Button" type="Button" parent="UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -83.0
+offset_right = 173.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("4_ce5f8")
+theme_override_font_sizes/font_size = 61
+text = "SHOP
+"
+
+[node name="Shop_window" type="Window" parent="."]
+initial_position = 1
+size = Vector2i(600, 500)
+unresizable = true
+
+[node name="GridContainer" type="GridContainer" parent="Shop_window"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -100.5
+offset_right = 80.0
+offset_bottom = 100.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 15
+theme_override_constants/v_separation = 20
+columns = 2
+
+[node name="Iem" type="VBoxContainer" parent="Shop_window/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Icon" type="TextureRect" parent="Shop_window/GridContainer/Iem"]
+layout_mode = 2
+texture = ExtResource("6_du2y2")
+stretch_mode = 3
+
+[node name="buyButton" type="Button" parent="Shop_window/GridContainer/Iem" groups=["buy"]]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("4_ce5f8")
+theme_override_font_sizes/font_size = 50
+text = "50$"
+
+[node name="Iem2" type="VBoxContainer" parent="Shop_window/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Icon" type="TextureRect" parent="Shop_window/GridContainer/Iem2"]
+layout_mode = 2
+texture = ExtResource("6_dwg8r")
+stretch_mode = 3
+
+[node name="buyButton" type="Button" parent="Shop_window/GridContainer/Iem2" groups=["buy"]]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("4_ce5f8")
+theme_override_font_sizes/font_size = 50
+text = "50$"
+
+[node name="Iem3" type="VBoxContainer" parent="Shop_window/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Icon" type="TextureRect" parent="Shop_window/GridContainer/Iem3"]
+layout_mode = 2
+texture = ExtResource("1_x7n6o")
+stretch_mode = 3
+
+[node name="buyButton" type="Button" parent="Shop_window/GridContainer/Iem3" groups=["buy"]]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("4_ce5f8")
+theme_override_font_sizes/font_size = 50
+text = "50$"
+
+[node name="Iem4" type="VBoxContainer" parent="Shop_window/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Icon" type="TextureRect" parent="Shop_window/GridContainer/Iem4"]
+layout_mode = 2
+texture = ExtResource("8_bnwl4")
+stretch_mode = 3
+
+[node name="buyButton" type="Button" parent="Shop_window/GridContainer/Iem4" groups=["buy"]]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("4_ce5f8")
+theme_override_font_sizes/font_size = 50
+text = "50$"
+
+[node name="coins_label" type="Label" parent="Shop_window"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("4_ce5f8")
+theme_override_font_sizes/font_size = 30
+text = "0$"
+
+[node name="Increase_coin" type="Button" parent="Shop_window"]
+offset_top = 50.0
+offset_right = 103.0
+offset_bottom = 103.0
+theme_override_fonts/font = ExtResource("4_ce5f8")
+theme_override_font_sizes/font_size = 36
+text = "+100$"
+
+[connection signal="pressed" from="UI/Button" to="UI" method="_on_button_pressed"]
+[connection signal="close_requested" from="Shop_window" to="UI" method="_on_shop_window_close_requested"]
+[connection signal="pressed" from="Shop_window/Increase_coin" to="UI" method="_on_increase_coin_pressed"]
