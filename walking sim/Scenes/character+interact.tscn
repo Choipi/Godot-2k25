@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbc6rlv2nnk5m"]
+
+[ext_resource type="Script" path="res://scripts/CharacterBody3D.gd" id="1_bf43w"]
+[ext_resource type="Script" path="res://scripts/Interaction.gd" id="2_128o7"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vfuga"]
+radius = 0.3
+height = 1.8
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+transform = Transform3D(0.807044, 0, 0, 0, 0.807044, 0, 0, 0, 0.807044, 0, 0, 0)
+script = ExtResource("1_bf43w")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_vfuga")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="Interaction" type="RayCast3D" parent="Camera3D"]
+target_position = Vector3(0, 0, -2)
+script = ExtResource("2_128o7")
+
+[node name="Label" type="Label" parent="Camera3D/Interaction"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 66
+text = "\"E\" to pickup"
