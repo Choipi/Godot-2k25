@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dkl03vw713wtt"
+path="res://.godot/imported/rock01.obj-7a8f37abd6553a4d638a4b0c0d9d5827.mesh"
+
+[deps]
+
+files=["res://.godot/imported/rock01.obj-7a8f37abd6553a4d638a4b0c0d9d5827.mesh"]
+
+source_file="res://State Machine AI - Assets/Models/Terrain/Rock_0/rock01.obj"
+dest_files=["res://.godot/imported/rock01.obj-7a8f37abd6553a4d638a4b0c0d9d5827.mesh", "res://.godot/imported/rock01.obj-7a8f37abd6553a4d638a4b0c0d9d5827.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
