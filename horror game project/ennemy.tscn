@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://dpyup8ncymleb"]
+
+[ext_resource type="Script" path="res://Horror Game - Assets/AI/AIController.gd" id="1_nvj7q"]
+[ext_resource type="PackedScene" uid="uid://c2tcjs26j25ww" path="res://Horror Game - Assets/AI/Alien/alien-bug.glb" id="2_u0kwk"]
+[ext_resource type="Script" path="res://Horror Game - Assets/AI/StateMachine.gd" id="3_6w844"]
+[ext_resource type="Script" path="res://Horror Game - Assets/AI/States/WanderState.gd" id="4_mddkm"]
+[ext_resource type="Script" path="res://Horror Game - Assets/AI/States/FleeState.gd" id="5_vtpd6"]
+[ext_resource type="Script" path="res://Horror Game - Assets/AI/States/ChaseState.gd" id="6_8nvyh"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_glnpk"]
+
+[node name="Ennemy" type="CharacterBody3D"]
+script = ExtResource("1_nvj7q")
+
+[node name="alien-bug" parent="." instance=ExtResource("2_u0kwk")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.69015, 0, 0, 0, 1, 0, 0, 0, 2.36782, 0, 0.907033, 0)
+shape = SubResource("CapsuleShape3D_glnpk")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("default_state")]
+script = ExtResource("3_6w844")
+default_state = NodePath("Wander")
+
+[node name="Flee" type="Node" parent="StateMachine"]
+script = ExtResource("5_vtpd6")
+controller_path = NodePath("../..")
+
+[node name="Chase" type="Node" parent="StateMachine"]
+script = ExtResource("6_8nvyh")
+controller_path = NodePath("../..")
+
+[node name="Wander" type="Node" parent="StateMachine"]
+script = ExtResource("4_mddkm")
+controller_path = NodePath("../..")
+
+[connection signal="target_reached" from="NavigationAgent3D" to="StateMachine" method="on_target_reached"]

@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://c72ee8dvcld84"]
+
+[ext_resource type="Script" path="res://Horror Game - Assets/Items/WorldItem.gd" id="1_koi57"]
+[ext_resource type="Material" uid="uid://mj84qqr0mc2g" path="res://Horror Game - Assets/Models/Chalice/Chalice.tres" id="2_j3mbn"]
+[ext_resource type="ArrayMesh" uid="uid://bpocy4vwis0ms" path="res://Horror Game - Assets/Models/Chalice/Chalice.obj" id="3_fbqim"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7b4tk"]
+
+[node name="WorldItem_Chalice" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.218553, 0)
+script = ExtResource("1_koi57")
+item_name = "Chalice"
+interact_prompt = "Pickup Chalice"
+
+[node name="Chalice" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.135535, 0.430713, -0.40272)
+material_override = ExtResource("2_j3mbn")
+mesh = ExtResource("3_fbqim")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.221, 0, 0, 0, 0.2, 0, 0, 0, 0.292, -0.152062, 0.478544, -0.426919)
+shape = SubResource("CylinderShape3D_7b4tk")

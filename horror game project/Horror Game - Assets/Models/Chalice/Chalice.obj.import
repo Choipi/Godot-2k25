@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bpocy4vwis0ms"
+path="res://.godot/imported/Chalice.obj-6a21d4f73a676a1a149404180bbce1fb.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Chalice.obj-6a21d4f73a676a1a149404180bbce1fb.mesh"]
+
+source_file="res://Horror Game - Assets/Models/Chalice/Chalice.obj"
+dest_files=["res://.godot/imported/Chalice.obj-6a21d4f73a676a1a149404180bbce1fb.mesh", "res://.godot/imported/Chalice.obj-6a21d4f73a676a1a149404180bbce1fb.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

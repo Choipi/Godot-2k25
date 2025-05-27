@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://b0send66c1xmw"]
+
+[ext_resource type="Script" path="res://Horror Game - Assets/Items/Item.gd" id="1_2c08v"]
+[ext_resource type="Texture2D" uid="uid://bc1xxvuqhkdwn" path="res://Horror Game - Assets/Items/Icons/Chalice.png" id="1_b1ncv"]
+[ext_resource type="PackedScene" uid="uid://c72ee8dvcld84" path="res://chalice.tscn" id="3_84k02"]
+
+[resource]
+script = ExtResource("1_2c08v")
+display_name = "Chalice"
+icon = ExtResource("1_b1ncv")
+max_stack_size = 12
+world_item_scene = ExtResource("3_84k02")
+can_drop = false
