@@ -1,0 +1,80 @@
+[gd_scene load_steps=10 format=3 uid="uid://ct7ix26cutdqh"]
+
+[ext_resource type="Texture2D" uid="uid://eok3voc4nq5t" path="res://Spritesheet.png" id="1_lfonp"]
+[ext_resource type="PackedScene" uid="uid://ysfib5ne3jie" path="res://Scenes/base.tscn" id="1_t0dm5"]
+[ext_resource type="Script" path="res://CharacterBody2D.gd" id="2_tnrk5"]
+[ext_resource type="Script" path="res://Scenes/Generation.gd" id="3_pt8py"]
+[ext_resource type="Script" path="res://script/ennemies.gd" id="6_pq65v"]
+[ext_resource type="PackedScene" uid="uid://najjebcjtogg" path="res://Scenes/ennemy.tscn" id="6_qq6yd"]
+[ext_resource type="PackedScene" uid="uid://mhu1efr0vj0q" path="res://Scenes/heart.tscn" id="7_m4oe0"]
+[ext_resource type="Script" path="res://script/UI.gd" id="8_yrpbo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_phf5q"]
+size = Vector2(40, 42)
+
+[node name="main" type="Node2D"]
+
+[node name="Base" parent="." instance=ExtResource("1_t0dm5")]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["Player"]]
+position = Vector2(168, 168)
+motion_mode = 1
+script = ExtResource("2_tnrk5")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+modulate = Color(1, 0.976667, 0.3, 1)
+scale = Vector2(3, 3)
+texture = ExtResource("1_lfonp")
+region_enabled = true
+region_rect = Rect2(460, 1, 14, 14)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_phf5q")
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+zoom = Vector2(0.32, 0.32)
+
+[node name="Generation" type="Node" parent="."]
+script = ExtResource("3_pt8py")
+ennemy_spawn_chance = 0.5
+heart_spawn_chance = 0.2
+max_ennemy_per_room = 5.0
+max_hearts_per_room = 5.0
+
+[node name="ennemies" type="Node" parent="." groups=["Ennemy_Manager"]]
+script = ExtResource("6_pq65v")
+
+[node name="ennemy" parent="." instance=ExtResource("6_qq6yd")]
+
+[node name="Area2D" parent="." instance=ExtResource("7_m4oe0")]
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("8_yrpbo")
+
+[node name="Minimap" type="Panel" parent="UI"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -277.0
+offset_top = 87.0
+offset_right = -237.0
+offset_bottom = 127.0
+grow_horizontal = 0
+scale = Vector2(6, 6)
+
+[node name="GridContainer" type="GridContainer" parent="UI/Minimap"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.66665
+offset_top = 3.16667
+offset_right = 3.66665
+offset_bottom = 3.16667
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.817091, 0.8366)
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 9
