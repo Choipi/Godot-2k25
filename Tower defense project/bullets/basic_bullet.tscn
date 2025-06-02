@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://cngudyvnvef2"]
+
+[ext_resource type="Script" path="res://Scripts/basic_bullet.gd" id="1_mq42d"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_l0jl6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fi4jm"]
+albedo_color = Color(0, 1, 1, 1)
+emission_enabled = true
+emission = Color(0, 1, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rmt1m"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sp4gi"]
+
+[node name="bullet" type="CharacterBody3D"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+script = ExtResource("1_mq42d")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+mesh = SubResource("SphereMesh_l0jl6")
+material = SubResource("StandardMaterial3D_fi4jm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_rmt1m")
+
+[node name="hitbox" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox"]
+transform = Transform3D(1.35, 0, 0, 0, 1.35, 0, 0, 0, 1.35, 0, 0, 0)
+shape = SubResource("BoxShape3D_sp4gi")
+
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]

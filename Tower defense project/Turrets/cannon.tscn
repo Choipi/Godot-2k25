@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://00mwo0s5lidt"]
+
+[ext_resource type="ArrayMesh" uid="uid://3qhtomd6x1ko" path="res://Models/weapon_cannon.obj" id="1_eoi73"]
+[ext_resource type="Script" path="res://Turrets/cannon.gd" id="1_yleli"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fesio"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ox1e8"]
+height = 0.443546
+
+[node name="cannon" type="StaticBody3D"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.5, 0, 0.5)
+script = ExtResource("1_yleli")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+mesh = ExtResource("1_eoi73")
+
+[node name="Aim" type="Marker3D" parent="MeshInstance3D"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0.257, 0.259)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.06834, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_fesio")
+
+[node name="Ennemy_detector" type="Area3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ennemy_detector"]
+transform = Transform3D(22.6246, 0, 0, 0, 14.9571, 0, 0, 0, 23.0594, 0, 4.04689, 0)
+shape = SubResource("CylinderShape3D_ox1e8")
+
+[node name="Bullet_container" type="Node" parent="."]
+
+[node name="fire_rate" type="Timer" parent="."]
+autostart = true
+
+[connection signal="body_entered" from="Ennemy_detector" to="." method="_on_ennemy_detector_body_entered"]
+[connection signal="body_exited" from="Ennemy_detector" to="." method="_on_ennemy_detector_body_exited"]
+[connection signal="timeout" from="fire_rate" to="." method="_on_fire_rate_timeout"]

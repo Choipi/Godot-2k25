@@ -1,0 +1,404 @@
+[gd_scene load_steps=22 format=3 uid="uid://cl7s652eq7tbg"]
+
+[ext_resource type="PackedScene" uid="uid://decaf5le1jcx4" path="res://Tile/tile_corner.tscn" id="1_71k25"]
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_c0xw0"]
+[ext_resource type="PackedScene" uid="uid://bct1hvyuwqdla" path="res://Tile/tile_endRoundSpawn.tscn" id="2_meop4"]
+[ext_resource type="PackedScene" uid="uid://1jkm3m6erjsg" path="res://Tile/tile_straight.tscn" id="3_8enk0"]
+[ext_resource type="PackedScene" uid="uid://dpg4ry0pa11sd" path="res://Tile/tile_end.tscn" id="4_fivo4"]
+[ext_resource type="PackedScene" uid="uid://bgqv6oqhtlx7h" path="res://Tile/tile_grass.tscn" id="5_a1tim"]
+[ext_resource type="PackedScene" uid="uid://00mwo0s5lidt" path="res://Turrets/cannon.tscn" id="7_6mhi1"]
+[ext_resource type="ArrayMesh" uid="uid://di51lbwt0xlp1" path="res://Models/woodStructure.obj" id="8_4xrkt"]
+[ext_resource type="Material" uid="uid://bmw2q8m3xfe8d" path="res://Materials/green_indicator.tres" id="9_qv7id"]
+[ext_resource type="Texture2D" uid="uid://dm047qkprmx0o" path="res://Textures/weapon_cannon_S.png" id="10_evd8i"]
+[ext_resource type="FontFile" uid="uid://3ge83gahb8xi" path="res://kenvector_future.ttf" id="11_po6ab"]
+
+[sub_resource type="Curve3D" id="Curve3D_w2g2r"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -7.545, 0.2, -0.25, 0, 0, 0, 0, 0, 0, -7.527, 0.2, -3.25, 0, 0, 0, 0, 0, 0, -3.592, 0.2, -3.25, 0, 0, 0, 0, 0, 0, -3.592, 0.2, -0.25, 0, 0, 0, 0, 0, 0, 0.408, 0.2, -0.25, 0, 0, 0, 0, 0, 0, 0.433, 0.2, -3.21, 0, 0, 0, 0, 0, 0, 1.422, 0.2, -3.166),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 7
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q3m7m"]
+sky_top_color = Color(0.423529, 0, 0.878431, 1)
+sky_horizon_color = Color(0.243137, 0.427451, 0.721569, 1)
+sky_curve = 0.219614
+sky_energy_multiplier = 26.52
+sky_cover_modulate = Color(0.517647, 1, 0, 1)
+
+[sub_resource type="Sky" id="Sky_a2m5l"]
+sky_material = SubResource("ProceduralSkyMaterial_q3m7m")
+
+[sub_resource type="Environment" id="Environment_60xpm"]
+background_mode = 1
+background_color = Color(0.541176, 1, 1, 1)
+background_energy_multiplier = 0.5
+sky = SubResource("Sky_a2m5l")
+ambient_light_source = 3
+ambient_light_energy = 2.73
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_23rxf"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 45.0
+content_margin_bottom = 10.0
+bg_color = Color(0.321569, 0.321569, 0.321569, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x6ajg"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 45.0
+content_margin_bottom = 10.0
+bg_color = Color(0.180392, 0.180392, 0.180392, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tyu8i"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 45.0
+content_margin_bottom = 10.0
+bg_color = Color(0.819608, 0.819608, 0.819608, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bfp5l"]
+bg_color = Color(0.6, 0.054902, 0.054902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hhn7k"]
+bg_color = Color(0.341176, 0.0313726, 0.0313726, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qfo2i"]
+bg_color = Color(0.921569, 0.0823529, 0.0823529, 1)
+
+[node name="World" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
+script = ExtResource("1_c0xw0")
+
+[node name="TileMap" type="Node3D" parent="."]
+
+[node name="Tile_grass" parent="TileMap" instance=ExtResource("1_71k25")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
+
+[node name="Tile_grass2" parent="TileMap" instance=ExtResource("2_meop4")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.5, 0, 3.5)
+
+[node name="Tile_grass3" parent="TileMap" instance=ExtResource("3_8enk0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 1.5)
+
+[node name="Tile_grass5" parent="TileMap" instance=ExtResource("3_8enk0")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.5, 0, 0.5)
+
+[node name="Tile_grass6" parent="TileMap" instance=ExtResource("3_8enk0")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.5, 0, 0.5)
+
+[node name="Tile_grass18" parent="TileMap" instance=ExtResource("3_8enk0")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.5, 0, 0.5)
+
+[node name="Tile_grass7" parent="TileMap" instance=ExtResource("3_8enk0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, 1.5)
+
+[node name="Tile_grass8" parent="TileMap" instance=ExtResource("3_8enk0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, 2.5)
+
+[node name="Tile_grass9" parent="TileMap" instance=ExtResource("3_8enk0")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.5, 0, 3.5)
+
+[node name="Tile_grass10" parent="TileMap" instance=ExtResource("3_8enk0")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.5, 0, 3.5)
+
+[node name="Tile_grass11" parent="TileMap" instance=ExtResource("3_8enk0")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.5, 0, 3.5)
+
+[node name="Tile_grass12" parent="TileMap" instance=ExtResource("3_8enk0")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8.5, 0, 2.5)
+
+[node name="Tile_grass13" parent="TileMap" instance=ExtResource("3_8enk0")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8.5, 0, 1.5)
+
+[node name="Tile_grass4" parent="TileMap" instance=ExtResource("3_8enk0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 2.5)
+
+[node name="Tile_grass14" parent="TileMap" instance=ExtResource("1_71k25")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.5, 0, 3.5)
+
+[node name="Tile_grass15" parent="TileMap" instance=ExtResource("1_71k25")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8.5, 0, 3.5)
+
+[node name="Tile_grass16" parent="TileMap" instance=ExtResource("1_71k25")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, 0.5)
+
+[node name="Tile_grass17" parent="TileMap" instance=ExtResource("1_71k25")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.5, 0, 0.5)
+
+[node name="Tile_grass19" parent="TileMap" instance=ExtResource("4_fivo4")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9.5, 0, 0.5)
+
+[node name="Tile_grass20" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 3.5)
+
+[node name="Tile_grass22" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 3.5)
+
+[node name="Tile_grass23" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 2.5)
+
+[node name="Tile_grass24" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 1.5)
+
+[node name="Tile_grass25" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 1.5)
+
+[node name="Tile_grass26" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 1.5)
+
+[node name="Tile_grass27" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 2.5)
+
+[node name="Tile_grass29" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, 2.5)
+
+[node name="Tile_grass30" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 0, 2.5)
+
+[node name="Tile_grass31" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 2.5)
+
+[node name="Tile_grass32" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 1.5)
+
+[node name="Tile_grass33" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 0.5)
+
+[node name="Tile_grass34" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, -0.5)
+
+[node name="Tile_grass35" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, -0.5)
+
+[node name="Tile_grass36" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 0, -0.5)
+
+[node name="Tile_grass37" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 0, -0.5)
+
+[node name="Tile_grass38" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 0, 0.5)
+
+[node name="Tile_grass40" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 0, 1.5)
+
+[node name="Tile_grass39" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 0, 0.5)
+
+[node name="Tile_grass42" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 0, 3.5)
+
+[node name="Tile_grass43" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 0, 2.5)
+
+[node name="Tile_grass44" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 0, 1.5)
+
+[node name="Tile_grass46" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -0.5)
+
+[node name="Tile_grass52" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.5)
+
+[node name="Tile_grass53" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 1.5)
+
+[node name="Tile_grass54" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 2.5)
+
+[node name="Tile_grass59" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 2.5)
+
+[node name="Tile_grass68" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 3.5)
+
+[node name="Tile_grass69" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 4.5)
+
+[node name="Tile_grass70" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0.5)
+
+[node name="Tile_grass47" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, -0.5)
+
+[node name="Tile_grass49" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -0.5)
+
+[node name="Tile_grass50" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, -0.5)
+
+[node name="Tile_grass51" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, -0.5)
+
+[node name="Tile_grass55" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, 1.5)
+
+[node name="Tile_grass56" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, 0.5)
+
+[node name="Tile_grass57" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 4.5)
+
+[node name="Tile_grass58" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 4.5)
+
+[node name="Tile_grass60" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 4.5)
+
+[node name="Tile_grass61" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, 4.5)
+
+[node name="Tile_grass62" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, 4.5)
+
+[node name="Tile_grass63" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 0, 4.5)
+
+[node name="Tile_grass64" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 4.5)
+
+[node name="Tile_grass65" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, 4.5)
+
+[node name="Tile_grass66" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, 4.5)
+
+[node name="Tile_grass67" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 0, 4.5)
+
+[node name="Tile_grass48" parent="TileMap" instance=ExtResource("5_a1tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -0.5)
+
+[node name="Path" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.0764, 0, 3.70025)
+curve = SubResource("Curve3D_w2g2r")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0.573576, -0.819152, 0, 0.819152, 0.573576, 1, 2.50718e-08, -3.58063e-08, -2.4326, 5.94482, 2.28596)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_60xpm")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.0790507, -0.996871, -7.42727e-09, 0.317202, 0.0251538, 0.948024, -0.945058, -0.074942, 0.318198, 6.48309, 11.9214, 0)
+
+[node name="cannon" parent="." instance=ExtResource("7_6mhi1")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.5, 0.25, -0.5)
+fire_rate = 1.0
+
+[node name="Indicator" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -0.5)
+mesh = ExtResource("8_4xrkt")
+surface_material_override/0 = ExtResource("9_qv7id")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ShopPanel" type="Panel" parent="CanvasLayer/UI"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/ShopPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="cannon_button" type="Button" parent="CanvasLayer/UI/ShopPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_23rxf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x6ajg")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tyu8i")
+text = "250 Gold
+"
+alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UI/ShopPanel/VBoxContainer/cannon_button"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 100.0
+grow_vertical = 2
+texture = ExtResource("10_evd8i")
+expand_mode = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/UI/ShopPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Cancel_button" type="Button" parent="CanvasLayer/UI/ShopPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("11_po6ab")
+theme_override_styles/normal = SubResource("StyleBoxFlat_bfp5l")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hhn7k")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qfo2i")
+text = "Close"
+
+[node name="Money" type="Label" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -404.0
+offset_top = -54.0
+offset_right = -318.0
+offset_bottom = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.866667, 1, 0, 1)
+theme_override_fonts/font = ExtResource("11_po6ab")
+theme_override_font_sizes/font_size = 21
+text = "250 GOLDS"
+
+[node name="Next Wave" type="Button" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = -76.0
+offset_right = 132.0
+offset_bottom = -45.0
+grow_vertical = 0
+text = "Next Wave"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/UI/ShopPanel/VBoxContainer/cannon_button" to="." method="_on_cannon_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/ShopPanel/VBoxContainer/Cancel_button" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/Next Wave" to="." method="_on_next_wave_pressed"]

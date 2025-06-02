@@ -1,0 +1,86 @@
+[gd_scene load_steps=14 format=3 uid="uid://csbh4hw0mrrol"]
+
+[ext_resource type="Script" path="res://Scripts/CharacterBody2D.gd" id="1_qdfhm"]
+[ext_resource type="Texture2D" uid="uid://cdsm5pjyj74x4" path="res://Assets - Metroidvania/player 2024-03-11_12-23-15.png" id="2_hr3ln"]
+[ext_resource type="Script" path="res://Assets - Metroidvania/States/idle_state.gd" id="3_sdi2v"]
+[ext_resource type="Script" path="res://Assets - Metroidvania/States/jump_state.gd" id="4_tejr3"]
+[ext_resource type="Script" path="res://Assets - Metroidvania/States/move_state.gd" id="5_51c2u"]
+[ext_resource type="Script" path="res://Assets - Metroidvania/States/fall_state.gd" id="6_knefn"]
+[ext_resource type="Script" path="res://Assets - Metroidvania/States/dash_state.gd" id="7_6ypba"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dm16r"]
+atlas = ExtResource("2_hr3ln")
+region = Rect2(0, 0, 209, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r68he"]
+atlas = ExtResource("2_hr3ln")
+region = Rect2(209, 0, 209, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2dmin"]
+atlas = ExtResource("2_hr3ln")
+region = Rect2(418, 0, 209, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_726fe"]
+atlas = ExtResource("2_hr3ln")
+region = Rect2(209, 208, 209, 208)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wqyrd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dm16r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r68he")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2dmin")
+}],
+"loop": true,
+"name": &"Jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_726fe")
+}],
+"loop": true,
+"name": &"Move",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xkcd2"]
+radius = 36.0
+height = 180.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_qdfhm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wqyrd")
+animation = &"Move"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_xkcd2")
+
+[node name="State" type="Node" parent="."]
+
+[node name="Idle" type="Node" parent="State"]
+script = ExtResource("3_sdi2v")
+
+[node name="jump" type="Node" parent="State"]
+script = ExtResource("4_tejr3")
+
+[node name="move" type="Node" parent="State"]
+script = ExtResource("5_51c2u")
+
+[node name="fall" type="Node" parent="State"]
+script = ExtResource("6_knefn")
+
+[node name="dash" type="Node" parent="State"]
+script = ExtResource("7_6ypba")

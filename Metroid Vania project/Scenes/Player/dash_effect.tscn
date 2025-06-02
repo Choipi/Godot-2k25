@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bk8r1ow7lbpn8"]
+
+[ext_resource type="Script" path="res://dash_effect.gd" id="1_auxke"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i2hua"]
+
+[node name="Node2D" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_i2hua")
+script = ExtResource("1_auxke")

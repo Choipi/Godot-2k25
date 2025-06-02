@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://jxrvxyw6khbw"]
+
+[ext_resource type="ArrayMesh" uid="uid://4yd56yp0onlo" path="res://Models/enemy_ufoRed.obj" id="1_dj0gv"]
+[ext_resource type="Script" path="res://Scripts/ennemy.gd" id="1_xv3rt"]
+[ext_resource type="PackedScene" uid="uid://bn43rg7l4mj7o" path="res://Scenes/health_bar3d.tscn" id="3_80jf0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d3t3y"]
+
+[node name="PathFollow3D" type="PathFollow3D"]
+
+[node name="Ennemy" type="CharacterBody3D" parent="." groups=["Ennemy"]]
+script = ExtResource("1_xv3rt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ennemy"]
+mesh = ExtResource("1_dj0gv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ennemy"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.419857, 0)
+shape = SubResource("BoxShape3D_d3t3y")
+
+[node name="health_bar" parent="Ennemy" instance=ExtResource("3_80jf0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.735307, 0)

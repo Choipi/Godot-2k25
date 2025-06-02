@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgqv6oqhtlx7h"]
+
+[ext_resource type="ArrayMesh" uid="uid://rw37bsqqc5e4" path="res://Models/tile.obj" id="1_uwgir"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_qo1sy"]
+data = PackedVector3Array(0.5, 0, -0.5, -0.5, 0, 0.5, 0.5, 0, 0.5, -0.5, 0, 0.5, 0.5, 0, -0.5, -0.5, 0, -0.5, 0.5, 0, -0.5, 0.5, 0.1, 0.5, 0.5, 0.1, -0.5, 0.5, 0.1, 0.5, 0.5, 0, -0.5, 0.5, 0, 0.5, -0.5, 0, 0.5, 0.5, 0.1, 0.5, 0.5, 0, 0.5, 0.5, 0.1, 0.5, -0.5, 0, 0.5, -0.5, 0.1, 0.5, -0.5, 0.1, -0.5, -0.5, 0, 0.5, -0.5, 0, -0.5, -0.5, 0, 0.5, -0.5, 0.1, -0.5, -0.5, 0.1, 0.5, 0.5, 0, -0.5, -0.5, 0.1, -0.5, -0.5, 0, -0.5, -0.5, 0.1, -0.5, 0.5, 0, -0.5, 0.5, 0.1, -0.5, 0.5, 0.2, 0.5, -0.5, 0.2, -0.5, 0.5, 0.2, -0.5, -0.5, 0.2, -0.5, 0.5, 0.2, 0.5, -0.5, 0.2, 0.5, 0.5, 0.1, -0.5, 0.5, 0.2, 0.5, 0.5, 0.2, -0.5, 0.5, 0.2, 0.5, 0.5, 0.1, -0.5, 0.5, 0.1, 0.5, 0.5, 0.1, -0.5, -0.5, 0.2, -0.5, -0.5, 0.1, -0.5, -0.5, 0.2, -0.5, 0.5, 0.1, -0.5, 0.5, 0.2, -0.5, -0.5, 0.2, -0.5, -0.5, 0.1, 0.5, -0.5, 0.1, -0.5, -0.5, 0.1, 0.5, -0.5, 0.2, -0.5, -0.5, 0.2, 0.5, -0.5, 0.1, 0.5, 0.5, 0.2, 0.5, 0.5, 0.1, 0.5, 0.5, 0.2, 0.5, -0.5, 0.1, 0.5, -0.5, 0.2, 0.5)
+
+[node name="Tile_grass" type="StaticBody3D" groups=["buildable_tile"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConcavePolygonShape3D_qo1sy")
+
+[node name="Tile" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_uwgir")

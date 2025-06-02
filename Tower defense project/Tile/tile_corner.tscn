@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://decaf5le1jcx4"]
+
+[ext_resource type="ArrayMesh" uid="uid://pux3h131h8fs" path="res://Models/tile_cornerSquare.obj" id="1_1exgc"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_qo1sy"]
+data = PackedVector3Array(0.5, 0, -0.5, -0.5, 0, 0.5, 0.5, 0, 0.5, -0.5, 0, 0.5, 0.5, 0, -0.5, -0.5, 0, -0.5, 0.5, 0, -0.5, 0.5, 0.1, 0.5, 0.5, 0.1, -0.5, 0.5, 0.1, 0.5, 0.5, 0, -0.5, 0.5, 0, 0.5, -0.5, 0, 0.5, 0.5, 0.1, 0.5, 0.5, 0, 0.5, 0.5, 0.1, 0.5, -0.5, 0, 0.5, -0.5, 0.1, 0.5, -0.5, 0.1, -0.5, -0.5, 0, 0.5, -0.5, 0, -0.5, -0.5, 0, 0.5, -0.5, 0.1, -0.5, -0.5, 0.1, 0.5, 0.5, 0, -0.5, -0.5, 0.1, -0.5, -0.5, 0, -0.5, -0.5, 0.1, -0.5, 0.5, 0, -0.5, 0.5, 0.1, -0.5, 0.5, 0.2, 0.5, -0.5, 0.2, -0.5, 0.5, 0.2, -0.5, -0.5, 0.2, -0.5, 0.5, 0.2, 0.5, -0.5, 0.2, 0.5, 0.5, 0.1, -0.5, 0.5, 0.2, 0.5, 0.5, 0.2, -0.5, 0.5, 0.2, 0.5, 0.5, 0.1, -0.5, 0.5, 0.1, 0.5, 0.5, 0.1, -0.5, -0.5, 0.2, -0.5, -0.5, 0.1, -0.5, -0.5, 0.2, -0.5, 0.5, 0.1, -0.5, 0.5, 0.2, -0.5, -0.5, 0.2, -0.5, -0.5, 0.1, 0.5, -0.5, 0.1, -0.5, -0.5, 0.1, 0.5, -0.5, 0.2, -0.5, -0.5, 0.2, 0.5, -0.5, 0.1, 0.5, 0.5, 0.2, 0.5, 0.5, 0.1, 0.5, 0.5, 0.2, 0.5, -0.5, 0.1, 0.5, -0.5, 0.2, 0.5)
+
+[node name="Tile_grass" type="StaticBody3D" groups=["not_buildable_tile"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConcavePolygonShape3D_qo1sy")
+
+[node name="Tile" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_1exgc")
