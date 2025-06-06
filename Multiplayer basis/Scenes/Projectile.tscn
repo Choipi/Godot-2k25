@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://esbawd03g1uk"]
+
+[ext_resource type="Texture2D" uid="uid://b0g2dsoqgqbs0" path="res://Sprites/Tiles/tile_0002.png" id="1_7gnbv"]
+[ext_resource type="Script" path="res://Scripts/Projectile.gd" id="1_fa4np"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qxcwg"]
+radius = 3.0
+height = 16.0
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_bx4vp"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[node name="Projectile" type="Area2D"]
+script = ExtResource("1_fa4np")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_7gnbv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_qxcwg")
+
+[node name="BulletSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_bx4vp")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

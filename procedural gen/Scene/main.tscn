@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://dbjp2so042hik"]
+
+[ext_resource type="Script" path="res://scripts/TerrainGen.gd" id="1_3obk2"]
+[ext_resource type="Script" path="res://scripts/Spawnable_obj.gd" id="2_60met"]
+[ext_resource type="PackedScene" uid="uid://cf1pwgl0y0mi6" path="res://Player Controller/Player.tscn" id="2_mflib"]
+[ext_resource type="PackedScene" uid="uid://dju443moxaprb" path="res://Models/Tree/Tree.tscn" id="3_fd71b"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7vfrp"]
+noise_type = 0
+frequency = 0.004
+offset = Vector3(266.67, 0, 0)
+fractal_gain = 0.13
+
+[sub_resource type="Curve" id="Curve_ixq5l"]
+_data = [Vector2(0, 0.032967), 0.0, -0.153283, 0, 0, Vector2(1, 0.78022), 1.90965, 0.0, 0, 0]
+point_count = 2
+
+[node name="Main" type="Node3D"]
+
+[node name="TerrainGen" type="Node" parent="."]
+script = ExtResource("1_3obk2")
+noise = SubResource("FastNoiseLite_7vfrp")
+elevation_curve = SubResource("Curve_ixq5l")
+
+[node name="spawnable_object_tree" type="Node" parent="TerrainGen"]
+script = ExtResource("2_60met")
+scene_to_spawn = Array[PackedScene]([ExtResource("3_fd71b")])
+spawn_count = 50
+max_scale = 3.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 5.96046e-08, 1, 0, -1, 5.96046e-08, 0, 3, 0)
+
+[node name="Player" parent="." instance=ExtResource("2_mflib")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 173.227, 0)
