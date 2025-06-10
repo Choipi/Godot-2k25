@@ -1,0 +1,190 @@
+[gd_scene load_steps=6 format=3 uid="uid://cxv6s4n5oe7ks"]
+
+[ext_resource type="Texture2D" uid="uid://dge2wdvtlm3nt" path="res://Sprites/backgroundForest.png" id="1_eu7xv"]
+[ext_resource type="Script" path="res://Scripts/menu.gd" id="1_fvga6"]
+[ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="2_ioprv"]
+[ext_resource type="PackedScene" uid="uid://cddye0h2l88cv" path="res://Scene/playerSlot.tscn" id="2_pyuyr"]
+[ext_resource type="Script" path="res://Scripts/lobby.gd" id="4_a37nd"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fvga6")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -269.0
+offset_top = -200.0
+offset_right = 269.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BG" type="TextureRect" parent="CanvasLayer"]
+z_index = -99
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1054.0
+offset_top = -321.0
+offset_right = 956.0
+offset_bottom = 703.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_eu7xv")
+stretch_mode = 1
+
+[node name="MainMenu" type="Control" parent="CanvasLayer/BG"]
+layout_mode = 1
+anchor_left = 0.526
+anchor_top = 0.311
+anchor_right = 0.526
+anchor_bottom = 0.311
+offset_left = -266.26
+offset_top = -193.464
+offset_right = 265.74
+offset_bottom = 193.536
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("2_ioprv")
+
+[node name="UsernameInput" type="LineEdit" parent="CanvasLayer/BG/MainMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.39
+anchor_top = 0.12
+anchor_right = 0.39
+anchor_bottom = 0.12
+offset_left = -209.48
+offset_top = 188.56
+offset_right = 315.52
+offset_bottom = 219.56
+placeholder_text = "Username..."
+
+[node name="IP input" type="LineEdit" parent="CanvasLayer/BG/MainMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.39
+anchor_top = 0.12
+anchor_right = 0.39
+anchor_bottom = 0.12
+offset_left = -213.48
+offset_top = 145.56
+offset_right = 311.52
+offset_bottom = 176.56
+text = "localhost"
+
+[node name="Port Input" type="LineEdit" parent="CanvasLayer/BG/MainMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.39
+anchor_top = 0.12
+anchor_right = 0.39
+anchor_bottom = 0.12
+offset_left = -215.48
+offset_top = 97.56
+offset_right = 309.52
+offset_bottom = 128.56
+text = "8080"
+
+[node name="Button" type="Button" parent="CanvasLayer/BG/MainMenu"]
+layout_mode = 0
+offset_left = -4.0
+offset_top = 352.0
+offset_right = 160.0
+offset_bottom = 383.0
+text = "Create Lobby"
+
+[node name="Button2" type="Button" parent="CanvasLayer/BG/MainMenu"]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 352.0
+offset_right = 334.0
+offset_bottom = 383.0
+text = "Join Lobby
+"
+
+[node name="lobby" type="Control" parent="CanvasLayer/BG"]
+visible = false
+layout_mode = 1
+anchor_left = 0.521
+anchor_top = 0.282
+anchor_right = 0.521
+anchor_bottom = 0.282
+offset_left = -264.21
+offset_top = -173.768
+offset_right = 279.79
+offset_bottom = 231.232
+script = ExtResource("4_a37nd")
+
+[node name="PLayerSlotList" type="VBoxContainer" parent="CanvasLayer/BG/lobby"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 13.0
+offset_right = 258.0
+offset_bottom = 371.0
+
+[node name="Panel" parent="CanvasLayer/BG/lobby/PLayerSlotList" instance=ExtResource("2_pyuyr")]
+layout_mode = 2
+
+[node name="Panel2" parent="CanvasLayer/BG/lobby/PLayerSlotList" instance=ExtResource("2_pyuyr")]
+layout_mode = 2
+
+[node name="Panel3" parent="CanvasLayer/BG/lobby/PLayerSlotList" instance=ExtResource("2_pyuyr")]
+layout_mode = 2
+
+[node name="Panel4" parent="CanvasLayer/BG/lobby/PLayerSlotList" instance=ExtResource("2_pyuyr")]
+layout_mode = 2
+
+[node name="Panel5" parent="CanvasLayer/BG/lobby/PLayerSlotList" instance=ExtResource("2_pyuyr")]
+layout_mode = 2
+
+[node name="Panel6" parent="CanvasLayer/BG/lobby/PLayerSlotList" instance=ExtResource("2_pyuyr")]
+layout_mode = 2
+
+[node name="Panel7" parent="CanvasLayer/BG/lobby/PLayerSlotList" instance=ExtResource("2_pyuyr")]
+layout_mode = 2
+
+[node name="Panel8" parent="CanvasLayer/BG/lobby/PLayerSlotList" instance=ExtResource("2_pyuyr")]
+layout_mode = 2
+
+[node name="Panel9" parent="CanvasLayer/BG/lobby/PLayerSlotList" instance=ExtResource("2_pyuyr")]
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="CanvasLayer/BG/lobby"]
+layout_mode = 0
+offset_left = 295.0
+offset_top = 334.0
+offset_right = 404.0
+offset_bottom = 378.0
+text = "Start"
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/BG/lobby"]
+layout_mode = 0
+offset_left = 411.0
+offset_top = 334.0
+offset_right = 514.0
+offset_bottom = 374.0
+text = "Quit
+"
+
+[node name="lobbyTimerUpdate" type="Timer" parent="CanvasLayer/BG/lobby"]
+autostart = true
+
+[connection signal="pressed" from="CanvasLayer/BG/MainMenu/Button" to="CanvasLayer/BG/MainMenu" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/BG/MainMenu/Button2" to="CanvasLayer/BG/MainMenu" method="_on_button_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/BG/lobby/StartButton" to="CanvasLayer/BG/lobby" method="_on_start_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/BG/lobby/QuitButton" to="CanvasLayer/BG/lobby" method="_on_quit_button_pressed"]
+[connection signal="timeout" from="CanvasLayer/BG/lobby/lobbyTimerUpdate" to="CanvasLayer/BG/lobby" method="update_ui"]

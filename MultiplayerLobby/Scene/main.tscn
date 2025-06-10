@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwmk3qkvmx1jx"]
+
+[ext_resource type="Script" path="res://Scripts/NetworkManager.gd" id="1_eoyel"]
+[ext_resource type="Script" path="res://Scripts/SceneManager.gd" id="1_oq0xs"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_oq0xs")
+
+[node name="NetworkManager" type="Node" parent="."]
+script = ExtResource("1_eoyel")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="NetworkManager"]
+_spawnable_scenes = PackedStringArray("res://Scene/Player.tscn")
+spawn_path = NodePath(".")
