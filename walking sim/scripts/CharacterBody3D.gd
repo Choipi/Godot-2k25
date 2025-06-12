@@ -29,7 +29,7 @@ func _physics_process(delta):
 		velocity.y = jump_force
 	
 	var move_input = Input.get_vector("move_left","move_right","move_forward","move_back")
-	var move_dir = (transform.basis * Vector3(move_input.x, 0, move_input.y))
+	var move_dir = (transform.basis * Vector3(move_input.x, 0, move_input.z))
 	
 	is_running = Input.is_action_pressed("sprint")
 	

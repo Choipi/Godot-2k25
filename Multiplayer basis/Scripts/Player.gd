@@ -36,9 +36,9 @@ var weapon_heat_cool_rate: float = 25.0
 var weapon_heat_cap_wait_time: float = 1.5
 var weapon_heat_heat_waiting: bool= false
 
-var shoot_sfx = preload("res://Audio/PlaneShoot.wav")
-var hit_sfx = preload("res://Audio/PlaneHit.wav")
-var explode_sfx = preload("res://Audio/PlaneExplode.wav")
+var shoot_sfx = load("res://Audio/PlaneExplode.wav")
+var hit_sfx = load("res://Audio/PlaneHit.wav")
+var explode_sfx = load("res://Audio/PlaneExplode.wav")
 
 
 var game_manager
